@@ -22,7 +22,7 @@ set_output_delay -max 2.0 -clock virtual_clk [get_ports Cout]
 set_output_delay -min -0.5 -clock virtual_clk [get_ports Sum[*]]
 set_output_delay -min -0.5 -clock virtual_clk [get_ports Cout]
 
-# 4. Define Output Load Constraints (ADD THIS HERE)
+# 4. Define Output Load Constraints
 # Apply capacitive load to the sum output bus and carry-out pin
 set_load 0.05 [get_ports Sum[*]]
 set_load 0.05 [get_ports Cout]

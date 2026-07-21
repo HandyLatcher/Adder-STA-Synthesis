@@ -8,9 +8,8 @@ module ripple_adder #(
     output [WIDTH-1:0] Sum,
     output             Cout
 );
-
-    // The carry bus must be WIDTH + 1 to accommodate the final Cout
-    wire [WIDTH:0] c;
+    
+    (*keep*) wire [WIDTH:0] c;
     assign c[0] = Cin;
 
     genvar i;

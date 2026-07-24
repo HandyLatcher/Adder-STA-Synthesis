@@ -134,42 +134,6 @@ For each bit, the CLA determines whether a carry will be **generated** or **prop
 | Area Trend | Medium |
 | Speed | High |
 
-## Carry Lookahead Adder (CLA)
-
-### Description
-
-The **Carry Lookahead Adder (CLA)** improves addition speed by reducing the delay caused by sequential carry propagation. Instead of waiting for each carry to ripple through the stages, it computes carry signals in advance using **Generate (G)** and **Propagate (P)** logic.
-
-### Working Principle
-
-For each bit, the CLA determines whether a carry will be **generated** or **propagated**. Using these signals, the carry outputs for multiple stages are calculated in parallel, significantly reducing the overall propagation delay compared to a Ripple Carry Adder.
-
-### Architecture Diagram
-
-<p align="center">
-  <img src="docs/images/cla_architecture.png" alt="Carry Lookahead Adder Architecture" width="650">
-</p>
-
-### Advantages
-
-- Faster than Ripple Carry Adder
-- Parallel carry computation reduces delay
-- Suitable for medium to high-speed arithmetic circuits
-
-### Limitations
-
-- More hardware and logic complexity than RCA
-- Area increases due to additional carry generation circuitry
-
-### Theoretical Characteristics
-
-| Characteristic | Value |
-|---------------|-------|
-| Carry Propagation | Parallel (Lookahead) |
-| Delay Trend | O(log n) |
-| Area Trend | Medium |
-| Speed | High |
-
 ## Kogge-Stone Adder (KSA)
 
 ### Description

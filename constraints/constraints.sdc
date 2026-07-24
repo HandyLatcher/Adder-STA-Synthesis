@@ -1,6 +1,6 @@
 # 1. Define a Virtual Clock (100 MHz -> 10ns Period)
 # Clock period is varied during analysis to determine maximum operating frequency for each adder architecture
-create_clock -name virtual_clk -period 10
+create_clock -name virtual_clk -period 7.16
 
 # 2. Define Input Delays
 # Setup Check (Max)

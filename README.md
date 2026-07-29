@@ -7,11 +7,11 @@
 
 ## Project Overview
 
-This project compares three widely used digital adder architectures—**Ripple Carry Adder (RCA)**, **Carry Lookahead Adder (CLA)**, and **Kogge-Stone Adder (KSA)**—using an open-source ASIC design flow.
+This project implements and compares Ripple Carry (RCA), Carry Lookahead (CLA), and Kogge-Stone (KSA) adders using an open-source ASIC flow, analyzing their area and timing trade-offs after synthesis and static timing analysis.
 
 The primary goal of the project is to evaluate the trade-offs between **timing performance** and **silicon area** across these architectures. Understanding these trade-offs is essential in digital VLSI design, where selecting the appropriate adder architecture can significantly impact the performance and efficiency of larger arithmetic circuits.
 
-Each adder was designed in **Verilog HDL**, synthesized using **Yosys** with the **Sky130 HD standard cell library**, and analyzed using **OpenSTA** for static timing analysis. The critical path delay and setup timing requirements were used to determine the minimum clock period, which was then verified through OpenSTA timing reports. The synthesized netlists were also used to compare the relative area utilization of the three implementations.
+Each adder was designed in **Verilog HDL**, synthesized using **Yosys** with the **Sky130 HD standard cell library**, and analyzed using **OpenSTA** for static timing analysis. OpenSTA reported a negative setup slack at the limiting clock period; therefore, the next higher clock period was selected as the minimum operating clock period. The synthesized netlists were also used to compare the relative area utilization of the three implementations.
 
 This project demonstrates a complete and reproducible **RTL-to-STA workflow**, providing practical insight into how different adder architectures behave after synthesis and how architectural choices influence timing and area in an ASIC design flow.
 
@@ -28,7 +28,7 @@ This project demonstrates a complete and reproducible **RTL-to-STA workflow**, p
 - [Timing Analysis](#timing-analysis)
 - [How to Run](#how-to-run)
 - [Conclusion](#conclusion)
-- 
+
 ---
 
 ## Objectives
@@ -166,7 +166,7 @@ The KSA first computes **Generate (G)** and **Propagate (P)** signals for each b
 ### Architecture Diagram
 
 <p align="center">
-  <img src="docs/kogge_stone_adder.webp" alt="Kogge-Stone Adder Architecture" width="650">
+  <img src="docs/kogge_stone_adder.webp" alt="Kogge-Stone Adder Architecture" width="450">
 </p>
 
 ### Advantages
@@ -204,18 +204,23 @@ The following workflow was used to evaluate and compare the three adder architec
 - Verified the functionality of each design using dedicated Verilog testbenches.
 - Simulated the designs using **Icarus Verilog** and analyzed generated waveforms using **GTKWave**.
 
-### 3. Logic Synthesis
+### 3. Simulation Results
+
+- Each adder implementation was functionally verified using dedicated Verilog testbenches
+- Simulations were performed using **Icarus Verilog**, and the generated waveforms were inspected using **GTKWave** to verify correct addition and carry     propagation before synthesis.
+  
+### 4. Logic Synthesis
 
 - Synthesized each design using **Yosys** with the **Sky130 HD standard cell library**.
 - Generated gate-level netlists and collected synthesis statistics, including synthesized cell area.
 
-### 4. Static Timing Analysis
+### 5. Static Timing Analysis
 
 - Performed **Static Timing Analysis (STA)** using **OpenSTA** with identical timing constraints for all three architectures.
 - Evaluated both **setup and hold timing** using **Synopsys Design Constraints (SDC)**.
 - Extracted the critical path delay of each synthesized design for timing evaluation.
 
-### 5. Performance Evaluation
+### 6. Performance Evaluation
 
 - Established a baseline timing constraint of **10 ns** for initial static timing analysis.
 - Extracted the critical path delay reported by OpenSTA for each synthesized design.
@@ -224,6 +229,8 @@ The following workflow was used to evaluate and compare the three adder architec
 - Used the verified minimum clock period to calculate the maximum operating frequency of each architecture.
 
 ---
+
+## Simulation Results 
 
 ## Results
 
@@ -234,6 +241,16 @@ The following workflow was used to evaluate and compare the three adder architec
 | Ripple Carry Adder (RCA) | 220.2112 | 7.16 | 139.66 |
 | Carry Lookahead Adder (CLA) | 247.7376 | 6.49 | 154.08 |
 | Kogge-Stone Adder (KSA) | 456.6880 | 5.84 | 171.23 |
+
+### Area Comparison Chart
+<p align="center">
+  <img src="docs/area_comparison.png" alt="Area Comparison of RCA, CLA and KSA" width="600">
+</p>
+
+### Frequency Comparison Chart
+<p align="center">
+  <img src="docs/maximum_frequency_comparison.png" alt="Maximum Frequency Comparison of RCA, CLA and KSA" width="600">
+</p>
 
 ### Key Observations
 
@@ -276,7 +293,6 @@ The setup timing reports below show the timing boundary where the design first f
 
 This section explains how to reproduce the synthesis and timing analysis results generated in this project.
 
----
 
 ### 1. Clone the Repository
 
@@ -304,7 +320,42 @@ Make sure these paths correctly point to the files inside your cloned repository
 
 ---
 
-### 3. Run Logic Synthesis Using Yosys
+### Functional Simulation
+
+The RTL designs are functionally verified using **Icarus Verilog**, and the generated waveforms are analyzed using **GTKWave**.
+
+- `iverilog -o <output> <rtl_file> <testbench_file>` → Compiles the RTL design and testbench into a simulation executable.
+- `./<simulation_file>` → Runs the compiled simulation and generates the waveform (`.vcd`) file.
+- `gtkwave <waveform_file>.vcd` → Opens the waveform viewer to analyze signal transitions.
+
+---
+
+### Ripple Carry Adder (RCA)
+
+```bash
+iverilog -o rca_sim rtl/ripple_carry_adder.v testbench/tb_ripple_carry_adder.v
+./rca_sim
+gtkwave rca.vcd
+```
+
+### Carry Lookahead Adder (CLA)
+
+```bash
+iverilog -o cla_sim rtl/carry_lookahead_adder.v testbench/tb_carry_lookahead_adder.v
+./cla_sim
+gtkwave cla.vcd
+```
+
+### Kogge-Stone Adder (KSA)
+
+```bash
+iverilog -o ksa_sim rtl/kogge_stone_adder.v testbench/tb_kogge_stone_adder.v
+./ksa_sim
+gtkwave ksa.vcd
+```
+---
+
+### 4. Run Logic Synthesis Using Yosys
 
 The synthesis scripts are located inside the `synthesis/` directory.
 
@@ -350,7 +401,7 @@ netlists/
 
 ---
 
-### 4. Run Static Timing Analysis Using OpenSTA
+### 5. Run Static Timing Analysis Using OpenSTA
 
 OpenSTA is used to analyze the timing performance of the synthesized designs.
 
@@ -400,7 +451,7 @@ The generated reports are used to evaluate:
 
 ---
 
-### 5. View Results
+### 6. View Results
 
 The important project files are organized as follows:
 

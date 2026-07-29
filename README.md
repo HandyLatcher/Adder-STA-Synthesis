@@ -7,7 +7,7 @@
 
 ## Project Overview
 
-This project presents a comparative study of three widely used digital adder architectures—**Ripple Carry Adder (RCA)**, **Carry Lookahead Adder (CLA)**, and **Kogge-Stone Adder (KSA)**—using an open-source ASIC design flow.
+This project compares three widely used digital adder architectures—**Ripple Carry Adder (RCA)**, **Carry Lookahead Adder (CLA)**, and **Kogge-Stone Adder (KSA)**—using an open-source ASIC design flow.
 
 The primary goal of the project is to evaluate the trade-offs between **timing performance** and **silicon area** across these architectures. Understanding these trade-offs is essential in digital VLSI design, where selecting the appropriate adder architecture can significantly impact the performance and efficiency of larger arithmetic circuits.
 
@@ -219,7 +219,7 @@ The following workflow was used to evaluate and compare the three adder architec
 
 - Established a baseline timing constraint of **10 ns** for initial static timing analysis.
 - Extracted the critical path delay reported by OpenSTA for each synthesized design.
-- Determined the minimum clock period using the critical path delay along with the setup time requirement from the timing analysis.
+- Using OpenSTA, the minimum clock period was identified by finding the first period after the negative setup slack point that achieved positive slack.
 - Verified the calculated clock period in OpenSTA to ensure that the design satisfies the given timing constraints.
 - Used the verified minimum clock period to calculate the maximum operating frequency of each architecture.
 
@@ -261,63 +261,14 @@ The synthesized area of each architecture was obtained from the Yosys synthesis 
 
 The setup timing reports below show the timing boundary where the design first fails (-0.01 ns slack). The reported minimum operating clock period is the next higher clock period at which timing is satisfied. Hold timing was verified at the selected operating clock period to ensure there were no hold violations.
 
-### Ripple Carry Adder (RCA)
-
-**Setup Timing**
-- 7.15 ns → Setup slack = -0.01 ns (**VIOLATED**)
-- 7.16 ns → Timing met (minimum operating clock period)
-
-<p align="center">
-  <img src="docs/rca_setup_boundary.png" alt="RCA Setup Timing" width="500">
-</p>
-
-**Hold Timing**
-- Hold timing verified at **7.16 ns**
-- No hold violations observed
-
-<p align="center">
-  <img src="docs/rca_hold_timing.png" alt="RCA Hold Timing" width="500">
-</p>
-
----
-
-### Carry Lookahead Adder (CLA)
-
-**Setup Timing**
-- 6.48 ns → Setup slack = -0.01 ns (**VIOLATED**)
-- 6.49 ns → Timing met (minimum operating clock period)
-
-<p align="center">
-  <img src="docs/cla_setup_boundary.png" alt="CLA Setup Timing" width="500">
-</p>
-
-**Hold Timing**
-- Hold timing verified at **6.49 ns**
-- No hold violations observed
-
-<p align="center">
-  <img src="docs/cla_hold_timing.png" alt="CLA Hold Timing" width="500">
-</p>
-
----
-
-### Kogge-Stone Adder (KSA)
-
-**Setup Timing**
-- 5.83 ns → Setup slack = -0.01 ns (**VIOLATED**)
-- 5.84 ns → Timing met (minimum operating clock period)
-
-<p align="center">
-  <img src="docs/ksa_setup_boundary.png" alt="KSA Setup Timing" width="500">
-</p>
-
-**Hold Timing**
-- Hold timing verified at **5.84 ns**
-- No hold violations observed
-
-<p align="center">
-  <img src="docs/ksa_hold_timing.png" alt="KSA Hold Timing" width="500">
-</p>
+| Parameter | Ripple Carry Adder (RCA) | Carry Lookahead Adder (CLA) | Kogge-Stone Adder (KSA) |
+|-----------|---------------------------|------------------------------|--------------------------|
+| **Setup Timing Boundary (Violation)** | 7.15 ns → Slack = -0.01 ns (**VIOLATED**) | 6.48 ns → Slack = -0.01 ns (**VIOLATED**) | 5.83 ns → Slack = -0.01 ns (**VIOLATED**) |
+| **Minimum Operating Clock Period** | 7.16 ns (Timing met) | 6.49 ns (Timing met) | 5.84 ns (Timing met) |
+| **Setup Timing Report** | <img src="docs/rca_setup_boundary.png" alt="RCA Setup Timing" width="300"> | <img src="docs/cla_setup_boundary.png" alt="CLA Setup Timing" width="300"> | <img src="docs/ksa_setup_boundary.png" alt="KSA Setup Timing" width="300"> |
+| **Hold Verification Clock Period** | 7.16 ns | 6.49 ns | 5.84 ns |
+| **Hold Timing Result** | No hold violations observed | No hold violations observed | No hold violations observed |
+| **Hold Timing Report** | <img src="docs/rca_hold_timing.png" alt="RCA Hold Timing" width="300"> | <img src="docs/cla_hold_timing.png" alt="CLA Hold Timing" width="300"> | <img src="docs/ksa_hold_timing.png" alt="KSA Hold Timing" width="300"> |
 
 ---
 
@@ -406,7 +357,7 @@ OpenSTA is used to analyze the timing performance of the synthesized designs.
 Since OpenSTA is executed from its own build directory, first navigate to the OpenSTA build location:
 
 ```bash
-cd <OpenSTA-build-directory>
+cd OpenSTA/build
 ```
 
 Launch OpenSTA:

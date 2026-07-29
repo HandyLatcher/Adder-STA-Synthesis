@@ -234,15 +234,27 @@ The synthesized area of each architecture was obtained from the Yosys synthesis 
 
 #### Ripple Carry Adder (RCA)
 
-![RCA Area](docs/rca_area.png)
+<p align="center">
+  <img src="docs/rca_area.png" alt="RCA Area" width="500">
+  <br>
+  <em>Figure 1. Yosys synthesis statistics for the Ripple Carry Adder.</em>
+</p>
 
 #### Carry Lookahead Adder (CLA)
 
-![CLA Area](docs/cla_area.png)
+<p align="center">
+  <img src="docs/cla_area.png" alt="CLA Area" width="500">
+  <br>
+  <em>Figure 2. Yosys synthesis statistics for the Carry Lookahead Adder (CLA).</em>
+</p>
 
 #### Kogge-Stone Adder (KSA)
 
-![KSA Area](docs/ksa_area.png)
+<p align="center">
+  <img src="docs/ksa_area.png" alt="KSA Area" width="500">
+  <br>
+  <em>Figure 3. Yosys synthesis statistics for the Kogge-Stone Adder (KSA).</em>
+</p>
 
 ---
 

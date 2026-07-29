@@ -1,5 +1,10 @@
 # Adder-STA-Synthesis
 
+[![Verilog](https://img.shields.io/badge/HDL-Verilog-003B6F?style=for-the-badge&logo=verilog&logoColor=white)](https://en.wikipedia.org/wiki/Verilog)
+[![Yosys](https://img.shields.io/badge/Synthesis-Yosys-4CAF50?style=for-the-badge)](https://yosyshq.net/yosys/)
+[![OpenSTA](https://img.shields.io/badge/Static%20Timing-OpenSTA-F57C00?style=for-the-badge)](https://github.com/The-OpenROAD-Project/OpenSTA)
+[![Sky130](https://img.shields.io/badge/PDK-Sky130-D32F2F?style=for-the-badge)](https://skywater-pdk.readthedocs.io/)
+
 ## Project Overview
 
 This project presents a comparative study of three widely used digital adder architectures—**Ripple Carry Adder (RCA)**, **Carry Lookahead Adder (CLA)**, and **Kogge-Stone Adder (KSA)**—using an open-source ASIC design flow.
@@ -10,6 +15,20 @@ Each adder was designed in **Verilog HDL**, synthesized using **Yosys** with the
 
 This project demonstrates a complete and reproducible **RTL-to-STA workflow**, providing practical insight into how different adder architectures behave after synthesis and how architectural choices influence timing and area in an ASIC design flow.
 
+---
+
+## Table of Contents
+
+- [Objectives](#objectives)
+- [Tools & Technologies](#tools--technologies)
+- [Repository Structure](#repository-structure)
+- [Adder Architectures](#adder-architectures)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Timing Analysis](#timing-analysis)
+- [How to Run](#how-to-run)
+- [Conclusion](#conclusion)
+- 
 ---
 
 ## Objectives
@@ -232,30 +251,10 @@ The following workflow was used to evaluate and compare the three adder architec
 
 The synthesized area of each architecture was obtained from the Yosys synthesis statistics using the Sky130 HD standard cell library.
 
-#### Ripple Carry Adder (RCA)
-
-<p align="center">
-  <img src="docs/rca_area.png" alt="RCA Area" width="500">
-  <br>
-  <em>Figure 1. Yosys synthesis statistics for the Ripple Carry Adder.</em>
-</p>
-
-#### Carry Lookahead Adder (CLA)
-
-<p align="center">
-  <img src="docs/cla_area.png" alt="CLA Area" width="500">
-  <br>
-  <em>Figure 2. Yosys synthesis statistics for the Carry Lookahead Adder (CLA).</em>
-</p>
-
-#### Kogge-Stone Adder (KSA)
-
-<p align="center">
-  <img src="docs/ksa_area.png" alt="KSA Area" width="500">
-  <br>
-  <em>Figure 3. Yosys synthesis statistics for the Kogge-Stone Adder (KSA).</em>
-</p>
-
+| Ripple Carry Adder (RCA) | Carry Lookahead Adder (CLA) | Kogge-Stone Adder (KSA) |
+|---------------------------|-----------------------------|--------------------------|
+| <img src="docs/rca_area.png" alt="RCA Area" width="300"> | <img src="docs/cla_area.png" alt="CLA Area" width="300"> | <img src="docs/ksa_area.png" alt="KSA Area" width="300"> |
+| *Figure 1. Yosys synthesis statistics for the Ripple Carry Adder.* | *Figure 2. Yosys synthesis statistics for the Carry Lookahead Adder.* | *Figure 3. Yosys synthesis statistics for the Kogge-Stone Adder.* |
 ---
 
 ## Timing Analysis
@@ -268,13 +267,17 @@ The setup timing reports below show the timing boundary where the design first f
 - 7.15 ns → Setup slack = -0.01 ns (**VIOLATED**)
 - 7.16 ns → Timing met (minimum operating clock period)
 
-![RCA Setup Timing](docs/rca_setup_boundary.png)
+<p align="center">
+  <img src="docs/rca_setup_boundary.png" alt="RCA Setup Timing" width="500">
+</p>
 
 **Hold Timing**
 - Hold timing verified at **7.16 ns**
 - No hold violations observed
 
-![RCA Hold Timing](docs/rca_hold_timing.png)
+<p align="center">
+  <img src="docs/rca_hold_timing.png" alt="RCA Hold Timing" width="500">
+</p>
 
 ---
 
@@ -284,13 +287,17 @@ The setup timing reports below show the timing boundary where the design first f
 - 6.48 ns → Setup slack = -0.01 ns (**VIOLATED**)
 - 6.49 ns → Timing met (minimum operating clock period)
 
-![CLA Setup Timing](docs/cla_setup_boundary.png)
+<p align="center">
+  <img src="docs/cla_setup_boundary.png" alt="CLA Setup Timing" width="500">
+</p>
 
 **Hold Timing**
 - Hold timing verified at **6.49 ns**
 - No hold violations observed
 
-![CLA Hold Timing](docs/cla_hold_timing.png)
+<p align="center">
+  <img src="docs/cla_hold_timing.png" alt="CLA Hold Timing" width="500">
+</p>
 
 ---
 
@@ -300,13 +307,17 @@ The setup timing reports below show the timing boundary where the design first f
 - 5.83 ns → Setup slack = -0.01 ns (**VIOLATED**)
 - 5.84 ns → Timing met (minimum operating clock period)
 
-![KSA Setup Timing](docs/ksa_setup_boundary.png)
+<p align="center">
+  <img src="docs/ksa_setup_boundary.png" alt="KSA Setup Timing" width="500">
+</p>
 
 **Hold Timing**
 - Hold timing verified at **5.84 ns**
 - No hold violations observed
 
-![KSA Hold Timing](docs/ksa_hold_timing.png)
+<p align="center">
+  <img src="docs/ksa_hold_timing.png" alt="KSA Hold Timing" width="500">
+</p>
 
 ---
 

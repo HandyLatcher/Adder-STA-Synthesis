@@ -14,7 +14,7 @@ module kogge_stone_adder_tb;
     integer pass_count = 0;
     integer fail_count = 0;
 
-    // Reference Model
+    // Expected output
     wire signed [8:0] expected_out = A + B + Cin;
 
     // DUT

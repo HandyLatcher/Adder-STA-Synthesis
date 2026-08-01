@@ -206,6 +206,7 @@ The following workflow was used to evaluate and compare the three adder architec
 
 ### 3. Simulation Results
 
+
 - Each adder implementation was functionally verified using dedicated Verilog testbenches
 - Simulations were performed using **Icarus Verilog**, and the generated waveforms were inspected using **GTKWave** to verify correct addition and carry     propagation before synthesis.
   

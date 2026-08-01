@@ -53,7 +53,7 @@ module ripple_adder_tb;
         end
 
         // Simulation Summary
-        $display("\n==============================");
+        $display("\n");
         $display("      Simulation Summary      ");
         $display("==============================");
         $display("Total Tests : %0d", pass_count + fail_count);

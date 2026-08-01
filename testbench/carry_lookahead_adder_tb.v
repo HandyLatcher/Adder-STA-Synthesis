@@ -65,12 +65,14 @@ module cla_8bit_tb;
             check_adder($random, $random, $random % 2);
         end
 
-        $display("\n      Simulation Summary");
+        $display("\n");
+        $display("      Simulation Summary"      );
         $display("==============================");
         $display("Total Tests : %0d", pass_count + fail_count);
         $display("Passed      : %0d", pass_count);
         $display("Failed      : %0d", fail_count);
-
+        $display("==============================/n");
+        
         $finish;
     end
 

@@ -15,7 +15,7 @@ module cla_8bit_tb;
     integer pass_count = 0;
     integer fail_count = 0;
 
-    // Golden Model
+    // Expected output
     wire signed [WIDTH:0] expected_out = a + b + cin;
 
     // DUT
@@ -65,6 +65,7 @@ module cla_8bit_tb;
             check_adder($random, $random, $random % 2);
         end
 
+        // Simulation Summary
         $display("\n");
         $display("      Simulation Summary"      );
         $display("==============================");

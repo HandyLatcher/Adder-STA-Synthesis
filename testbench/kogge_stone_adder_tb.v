@@ -51,7 +51,7 @@ module kogge_stone_adder_tb;
 
     // Execution
     initial begin
-        $dumpfile("kogge_stone_adder.vcd");
+        $dumpfile("ksa.vcd");
         $dumpvars(0, kogge_stone_adder_tb);
 
         // Edge Cases
@@ -65,7 +65,6 @@ module kogge_stone_adder_tb;
         end
 
         // Simulation Summary
-        $display("\n==============================");
         $display("      Simulation Summary      ");
         $display("==============================");
         $display("Total Tests : %0d", pass_count + fail_count);

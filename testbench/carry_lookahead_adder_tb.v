@@ -52,7 +52,7 @@ module cla_8bit_tb;
 
     // Test Sequence
     initial begin
-        $dumpfile("cla_8bit.vcd");
+        $dumpfile("cla.vcd");
         $dumpvars(0, cla_8bit_tb);
 
         // Edge Cases

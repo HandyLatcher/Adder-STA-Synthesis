@@ -333,7 +333,7 @@ The RTL designs are functionally verified using **Icarus Verilog**, and the gene
 ### Ripple Carry Adder (RCA)
 
 ```bash
-iverilog -o rca_sim rtl/ripple_carry_adder.v testbench/tb_ripple_carry_adder.v
+iverilog -o rca_sim rtl/ripple_adder.v testbench/ripple_adder_tb.v
 ./rca_sim
 gtkwave rca.vcd
 ```
@@ -341,7 +341,7 @@ gtkwave rca.vcd
 ### Carry Lookahead Adder (CLA)
 
 ```bash
-iverilog -o cla_sim rtl/carry_lookahead_adder.v testbench/tb_carry_lookahead_adder.v
+iverilog -o cla_sim rtl/carry_lookahead_adder.v testbench/carry_lookahead_adder_tb.v 
 ./cla_sim
 gtkwave cla.vcd
 ```
@@ -349,7 +349,7 @@ gtkwave cla.vcd
 ### Kogge-Stone Adder (KSA)
 
 ```bash
-iverilog -o ksa_sim rtl/kogge_stone_adder.v testbench/tb_kogge_stone_adder.v
+iverilog -o ksa_sim rtl/kogge_stone_adder.v testbench/kogge_stone_adder_tb.v
 ./ksa_sim
 gtkwave ksa.vcd
 ```

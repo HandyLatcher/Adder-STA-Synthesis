@@ -14,7 +14,7 @@ module ripple_adder_tb;
     integer pass_count = 0;
     integer fail_count = 0;
 
-    // 3. Golden Model
+    // 3. Expected output
     wire signed [WIDTH:0] expected_out = A + B + Cin;
 
     // 4. DUT

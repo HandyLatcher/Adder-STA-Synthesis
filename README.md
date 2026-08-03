@@ -24,6 +24,7 @@ This project demonstrates a complete and reproducible **RTL-to-STA workflow**, p
 - [Repository Structure](#repository-structure)
 - [Adder Architectures](#adder-architectures)
 - [Methodology](#methodology)
+- [Simulation Results](#simulation-results)
 - [Results](#results)
 - [Timing Analysis](#timing-analysis)
 - [How to Run](#how-to-run)
@@ -68,10 +69,10 @@ Adder-STA-Synthesis/
 ├── constraints/       # SDC timing constraint files
 ├── netlists/          # Synthesized gate-level netlists
 ├── sta/               # OpenSTA timing analysis TCL scripts
-├── simulation/        # Simulation outputs and waveform files
 ├── docs/              # Reports, images, and documentation
 ├── .gitignore
-└── README.md
+├── README.md
+└── License
 ```
 
 Each directory is organized to separate RTL design, synthesis, timing analysis, simulation, and documentation, making the project easy to navigate and reproduce.
@@ -231,7 +232,30 @@ The following workflow was used to evaluate and compare the three adder architec
 
 ---
 
-## Simulation Results 
+## Simulation Results ## Simulation Results
+
+### Ripple Carry Adder (RCA)
+
+<p align="center">
+  <img src="docs/rca_sim.png" alt="Ripple Carry Adder Simulation" width="650">
+</p>
+
+---
+
+### Carry Lookahead Adder (CLA)
+
+<p align="center">
+  <img src="docs/cla_sim.png" alt="Carry Lookahead Adder Simulation" width="650">
+</p>
+
+---
+
+### Kogge-Stone Adder (KSA)
+
+<p align="center">
+  <img src="docs/ksa_sim.png" alt="Kogge-Stone Adder Simulation" width="650">
+</p>
+
 
 ## Results
 

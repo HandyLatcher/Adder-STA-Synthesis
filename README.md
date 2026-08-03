@@ -498,3 +498,8 @@ Following these steps allows the complete RTL-to-STA flow to be reproduced using
 ## Conclusion
 
 This project compares three commonly used adder architectures using an open-source RTL-to-STA design flow. By synthesizing each design with the Sky130 standard cell library and analyzing it using OpenSTA, the trade-off between area and timing performance can be clearly observed. While the Ripple Carry Adder provides the most area-efficient implementation, the Kogge-Stone Adder achieves the highest operating frequency at the cost of increased hardware complexity. The repository includes the required scripts and constraints to reproduce the synthesis and timing analysis results.
+
+---
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

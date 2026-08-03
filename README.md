@@ -232,7 +232,7 @@ The following workflow was used to evaluate and compare the three adder architec
 
 ---
 
-## Simulation Results ## Simulation Results
+ ## Simulation Results
 
 ### Ripple Carry Adder (RCA)
 

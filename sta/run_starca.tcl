@@ -14,7 +14,7 @@ read_sdc /home/cdesigner/Adder-STA-Synthesis/constraints/constraints.sdc
 report_checks -path_delay max -fields {cap input}
 report_checks -path_delay min -fields {cap input}
 
-# Slack summary
+# Slack reports
 report_worst_slack
 report_wns
 report_tns
